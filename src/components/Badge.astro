@@ -3,16 +3,22 @@ type Props = {
   bg: string;
   img: string;
   text: string;
+  link?: string;
+  textcolor?: string;
 };
 
-const { img, bg, text } = Astro.props;
+const { img, bg, text, link, textcolor = "text-black" } = Astro.props;
 ---
 
-<div class="flex gap-x-1 w-fit h-8 bg-black shadow-md">
-  <figure class="h-8 w-8">
-    <img src={img} alt="skill img" class="h-full w-full object-cover" />
-  </figure>
-  <div class:list={["p-2 flex items-center", bg]}>
-    <p class="uppercase tracking-widest text-black font-semibold">{text}</p>
+<a href={link} target="_blank">
+  <div class="flex gap-x-1 w-fit h-8 bg-black shadow-md">
+    <figure class="h-8 w-8">
+      <img src={img} alt="skill img" class="h-full w-full object-cover" />
+    </figure>
+    <div class:list={["p-2 flex items-center", bg]}>
+      <p class:list={["uppercase tracking-widest font-semibold", textcolor]}>
+        {text}
+      </p>
+    </div>
   </div>
-</div>
+</a>

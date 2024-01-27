@@ -5,8 +5,8 @@ export default {
 	theme: {
 		extend: {
 			backgroundImage:{
-				"open-menu":"url('./public/open-menu.svg')",
-				"close-menu":"url('./public/close-menu.svg')"
+				"open-menu":"url('open-menu.svg')",
+				"close-menu":"url('close-menu.svg')"
 			}
 		},
 	},
