@@ -1,0 +1,62 @@
+---
+const anchors = [
+  {
+    link: "/",
+    name: "Home",
+  },
+  {
+    link: "/project",
+    name: "Project",
+  },
+  {
+    link: "/about",
+    name: "About",
+  },
+  {
+    link: "/contact",
+    name: "Contact",
+  },
+  {
+    link: "/blog",
+    name: "Blog",
+  },
+];
+---
+
+<nav>
+  <input type="checkbox" id="menu" class="peer/menu hidden" />
+  <label
+    for="menu"
+    class="w-10 h-10 sticky z-50 rounded-md bg-cover p-2 bg-green-700 text-lg md:hidden bg-open-menu peer-checked/menu:bg-close-menu inline-block transition-all duration-500"
+  >
+  </label>
+
+  <ul
+    class={"fixed z-40 peer-checked/menu:h-screen md:h-fit inset-0 bg-blue-950 p-[5%] grid auto-rows-max content-center justify-items-center clip-circle-0 peer-checked/menu:clip-circle-full transition-all duration-700 gap-6 md:clip-circle-full md:relative md:grid-flow-col md:px-0 md:bg-transparent"}
+  >
+    {
+      anchors.map((anchor) => (
+        <li class="cursor-pointer">
+          <a href={anchor.link}>
+            <p class="font-normal opacity-75 hover:opacity-100 hover:text-lg transition-[font-size] md:duration-700">
+              {anchor.name}
+            </p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  @layer utilities {
+    .clip-circle-0 {
+      clip-path: circle(0% at top right);
+    }
+    .clip-circle-full {
+      clip-path: circle(150% at top right);
+    }
+  }
+</style>
