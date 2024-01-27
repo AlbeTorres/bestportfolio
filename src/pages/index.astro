@@ -1,18 +1,107 @@
 ---
+import Badge from "../components/Badge.astro";
 import Layout from "../layouts/Layout.astro";
+
+const skills = [
+  {
+    bg: "bg-yellow-500",
+    img: "javascript.svg",
+    text: "Javascript",
+  },
+  {
+    bg: "bg-blue-500",
+    img: "typescript.svg",
+    text: "typescript",
+  },
+  {
+    bg: "bg-green-500",
+    img: "node.svg",
+    text: "node.JS",
+  },
+  {
+    bg: "bg-green-300",
+    img: "mongodb.svg",
+    text: "mongodb",
+  },
+  {
+    bg: "bg-blue-300",
+    img: "mysql.svg",
+    text: "mysql",
+  },
+  {
+    bg: "bg-gray-500",
+    img: "postgresql.svg",
+    text: "postgresql",
+  },
+  {
+    bg: "bg-cyan-500",
+    img: "react.svg",
+    text: "react",
+  },
+  {
+    bg: "bg-white",
+    img: "next.svg",
+    text: "next",
+  },
+  {
+    bg: "bg-pink-500",
+    img: "astro.svg",
+    text: "astro",
+  },
+  {
+    bg: "bg-blue-500",
+    img: "tailwindcss.svg",
+    text: "tailwindcss",
+  },
+];
 ---
 
 <Layout title="Alberto Torres.">
-  <main class="w-full flex items-end">
-    <figure class="w-60 md:w-[30rem] relative">
-      <img
-        src="albe-dev.webp"
-        alt="imagen de programador rubio pixelado"
-        class="w-16 h-20 object-cover float-left mr-1"
-      />
-      <h2 class="text-2xl mt-14 font-semibold">
-        Hello there! I'm Alberto Torres 👋
-      </h2>
-    </figure>
+  <main class="w-full space-y-5">
+    <div class="w-full flex">
+      <figure class="w-60 md:w-[30rem] relative">
+        <img
+          src="albe-dev.webp"
+          alt="imagen de programador rubio pixelado"
+          class="w-16 h-20 object-cover float-left mr-1"
+        />
+        <h2 class="text-2xl mt-14 font-semibold">
+          Hello there! I'm Alberto Torres 👋
+        </h2>
+      </figure>
+    </div>
+
+    <h3 class="">
+      A passionate freelance fullstack software engineer based in Miami. With
+      over three years of experience.
+    </h3>
+
+    <section class="space-y-5">
+      <h2 class="text-3xl font-semibold">Specialized in:</h2>
+      <div class="flex flex-wrap gap-5">
+        {
+          skills.map((skill) => (
+            <Badge img={skill.img} bg={skill.bg} text={skill.text} />
+          ))
+        }
+      </div>
+    </section>
+
+    <article>
+      🚀 My journey includes collaborating with startups, contributing to the
+      development of a marketplace, and creating a platform connecting
+      businesses and freelancers. I excel in Git, GitHub, agile methodologies
+      like Scrum, and Jira for project management.
+    </article>
+    <article>
+      🎓 As a perpetual learner, I'm always exploring new realms of software
+      development. My goal? Empowering others to elevate their skills, create
+      businesses, and boost their income.
+    </article>
+    <article>
+      💻 Currently, I'm focused on building my personal brand online, aiming to
+      share knowledge and assist aspiring developers. Let's connect,
+      collaborate, and code for success! 🚀
+    </article>
   </main>
 </Layout>
