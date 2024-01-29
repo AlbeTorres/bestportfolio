@@ -1,6 +1,7 @@
 ---
 import Badge from "../components/Badge.astro";
 import Layout from "../layouts/Layout.astro";
+import { fetchGithubReposInfo } from "../services/utils/github";
 
 const contact = [
   {
@@ -81,6 +82,10 @@ const skills = [
     text: "tailwindcss",
   },
 ];
+
+const profile = await fetchGithubReposInfo();
+
+console.log(profile);
 ---
 
 <Layout title="Alberto Torres.">
