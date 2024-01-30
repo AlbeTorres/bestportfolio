@@ -1,154 +1,71 @@
 ---
-import Badge from "../components/Badge.astro";
-import Layout from "../layouts/Layout.astro";
-import { fetchGithubReposInfo } from "../services/utils/github";
+import Badge from '../components/Badge.astro'
+import Card from '../components/Card.astro'
+import Layout from '../layouts/Layout.astro'
+import { fetchGithubReposInfo } from '../services/github'
 
-const contact = [
-  {
-    bg: "bg-pink-500",
-    img: "instagram.svg",
-    text: "instagram",
-    link: "https://www.instagram.com/albe_torres/",
-  },
-  {
-    bg: "bg-white",
-    img: "x.svg",
-    text: "x",
-    link: "https://twitter.com/albe_torres",
-  },
-  {
-    bg: "bg-blue-500",
-    img: "linkedin.svg",
-    text: "linkedin",
-    link: "https://www.linkedin.com/in/albetorres/",
-  },
-  {
-    bg: "bg-blue-500",
-    img: "github.svg",
-    text: "github",
-    link: "https://github.com/AlbeTorres",
-  },
-];
+import type { Github } from '../services/github.type'
 
-const skills = [
-  {
-    bg: "bg-yellow-500",
-    img: "javascript.svg",
-    text: "Javascript",
-  },
-  {
-    bg: "bg-blue-500",
-    img: "typescript.svg",
-    text: "typescript",
-  },
-  {
-    bg: "bg-green-500",
-    img: "node.svg",
-    text: "node.JS",
-  },
-  {
-    bg: "bg-green-300",
-    img: "mongodb.svg",
-    text: "mongodb",
-  },
-  {
-    bg: "bg-blue-300",
-    img: "mysql.svg",
-    text: "mysql",
-  },
-  {
-    bg: "bg-gray-500",
-    img: "postgresql.svg",
-    text: "postgresql",
-  },
-  {
-    bg: "bg-cyan-500",
-    img: "react.svg",
-    text: "react",
-  },
-  {
-    bg: "bg-white",
-    img: "next.svg",
-    text: "next",
-  },
-  {
-    bg: "bg-pink-500",
-    img: "astro.svg",
-    text: "astro",
-  },
-  {
-    bg: "bg-blue-500",
-    img: "tailwindcss.svg",
-    text: "tailwindcss",
-  },
-];
+import { contact, skills } from '../utils/data'
 
-const profile = await fetchGithubReposInfo();
-
-console.log(profile);
+const res = await fetchGithubReposInfo()
+const projects = res.filter(p => p.private != true)
 ---
 
-<Layout title="Alberto Torres.">
-  <main class="w-full space-y-8 pb-5">
-    <div class="w-full flex">
-      <figure class="w-60 md:w-[30rem]">
+<Layout title='Alberto Torres.'>
+  <main class='w-full space-y-8 pb-5'>
+    <div class='w-full flex'>
+      <figure class='w-60 md:w-[30rem]'>
         <img
-          src="albe-dev.webp"
-          alt="imagen de programador rubio pixelado"
-          class="w-16 h-20 object-cover float-left mr-1"
+          src='albe-dev.webp'
+          alt='imagen de programador rubio pixelado'
+          class='w-16 h-20 object-cover float-left mr-1'
         />
-        <h2 class="text-2xl mt-14 z-0 font-semibold">
-          Hello there! I'm Alberto Torres 👋
-        </h2>
+        <h2 class='text-2xl mt-14 z-0 font-semibold'>Hello there! I'm Alberto Torres 👋</h2>
       </figure>
     </div>
 
-    <h3 class="">
-      A passionate freelance fullstack software engineer based in Miami. With
-      over three years of experience.
+    <h3 class=''>
+      A passionate freelance fullstack software engineer based in Miami. With over three years of
+      experience.
     </h3>
 
-    <section class="space-y-5">
-      <h2 class="text-xl font-semibold">Specialized in:</h2>
-      <div class="flex flex-wrap gap-5">
-        {
-          skills.map((skill) => (
-            <Badge img={skill.img} bg={skill.bg} text={skill.text} />
-          ))
-        }
+    <section class='space-y-5'>
+      <h2 class='text-xl font-semibold'>Specialized in:</h2>
+      <div class='flex flex-wrap gap-5'>
+        {skills.map(skill => <Badge img={skill.img} bg={skill.bg} text={skill.text} />)}
       </div>
     </section>
 
     <article>
-      🚀 My journey includes collaborating with startups, contributing to the
-      development of a marketplace, and creating a platform connecting
-      businesses and freelancers. I excel in Git, GitHub, agile methodologies
-      like Scrum, and Jira for project management.
+      🚀 My journey includes collaborating with startups, contributing to the development of a
+      marketplace, and creating a platform connecting businesses and freelancers. I excel in Git,
+      GitHub, agile methodologies like Scrum, and Jira for project management.
     </article>
     <article>
-      🎓 As a perpetual learner, I'm always exploring new realms of software
-      development. My goal? Empowering others to elevate their skills, create
-      businesses, and boost their income.
+      🎓 As a perpetual learner, I'm always exploring new realms of software development. My goal?
+      Empowering others to elevate their skills, create businesses, and boost their income.
     </article>
     <article>
-      💻 Currently, I'm focused on building my personal brand online, aiming to
-      share knowledge and assist aspiring developers. Let's connect,
-      collaborate, and code for success! 🚀
+      💻 Currently, I'm focused on building my personal brand online, aiming to share knowledge and
+      assist aspiring developers. Let's connect, collaborate, and code for success! 🚀
     </article>
-    <section class="space-y-5">
-      <h2 class="text-xl font-semibold">Contact me at:</h2>
-      <div class="flex flex-wrap gap-5">
+    <section class='space-y-5'>
+      <h2 class='text-xl font-semibold'>Some of my work:</h2>
+      <div class='flex flex-wrap gap-5'>
         {
-          contact.map((skill) => (
-            <Badge
-              img={skill.img}
-              bg={skill.bg}
-              text={skill.text}
-              link={skill.link}
-            />
+          projects.map((p: Github) => (
+            <Card title={p.name} body={p.description} href={p.html_url} />
           ))
         }
+      </div>
+    </section>
+    <section class='space-y-5'>
+      <h2 class='text-xl font-semibold'>Contact me at:</h2>
+      <div class='flex flex-wrap gap-5'>
+        {contact.map(c => <Badge img={c.img} bg={c.bg} text={c.text} link={c.link} />)}
       </div>
     </section>
   </main>
 </Layout>
+../services/github.type
