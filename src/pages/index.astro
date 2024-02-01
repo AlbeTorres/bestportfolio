@@ -6,10 +6,10 @@ import { fetchGithubReposInfo } from '../services/github'
 
 import type { Github } from '../services/github.type'
 
-import { contact, skills } from '../utils/data'
+import { contact, project, skills } from '../utils/data'
 
 const res = await fetchGithubReposInfo()
-const projects = res.filter(p => p.private != true)
+const projects = res.filter(p => project.includes(p.id))
 ---
 
 <Layout title='Alberto Torres.'>
@@ -68,4 +68,3 @@ const projects = res.filter(p => p.private != true)
     </section>
   </main>
 </Layout>
-../services/github.type
