@@ -5,25 +5,25 @@ const anchors = [
     name: 'Home',
   },
   {
-    link: '/project',
+    link: '#project',
     name: 'Project',
   },
   {
-    link: '/about',
+    link: '#about',
     name: 'About',
   },
   {
-    link: '/contact',
+    link: '#contact',
     name: 'Contact',
   },
-  {
-    link: '/blog',
-    name: 'Blog',
-  },
+  // {
+  //   link: '/blog',
+  //   name: 'Blog',
+  // },
 ]
 ---
 
-<nav class='fixed md:static'>
+<nav class='fixed md:static hidden md:block'>
   <input type='checkbox' id='menu' class='peer/menu hidden' />
   <label
     for='menu'
@@ -32,7 +32,7 @@ const anchors = [
   </label>
 
   <ul
-    class={'fixed z-40 peer-checked/menu:h-screen md:h-fit  bg-blue-950 p-[5%] grid auto-rows-max content-center justify-items-center clip-circle-0 peer-checked/menu:clip-circle-full inset-0 transition-all duration-500 gap-6 md:clip-circle-full md:right-0 md:absolute md:inset-auto top-0 md:w-fit md:grid-flow-col md:px-0 md:py-5 md:bg-transparent '}
+    class={'fixed z-40 peer-checked/menu:h-screen md:h-fit bg-blue-950 p-[5%] grid auto-rows-max content-center justify-items-center clip-circle-0 peer-checked/menu:clip-circle-full inset-0 transition-all duration-500 gap-6 md:clip-circle-full md:right-0 md:absolute md:inset-auto top-0 md:w-fit md:grid-flow-col md:px-0 md:py-5 md:bg-transparent '}
   >
     {
       anchors.map(anchor => (

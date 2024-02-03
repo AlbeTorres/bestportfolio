@@ -17,7 +17,7 @@ projects = projects.map(p => {
 })
 ---
 
-<Layout title='Alberto Torres.'>
+<Layout title='Alberto Torres 👨‍💻| Software Engineer'>
   <main class='w-full space-y-16 pb-5'>
     <section class='space-y-3'>
       <div class='w-full flex'>
@@ -43,7 +43,7 @@ projects = projects.map(p => {
         {skills.map(skill => <Badge img={skill.img} bg={skill.bg} text={skill.text} />)}
       </div>
     </section>
-    <section class='space-y-5'>
+    <section id='about' class='space-y-5'>
       <h2 class='text-xl font-semibold'>About me:</h2>
       <article>
         🚀 My journey includes collaborating with startups, contributing to the development of a
@@ -59,7 +59,7 @@ projects = projects.map(p => {
         and assist aspiring developers. Let's connect, collaborate, and code for success! 🚀
       </article>
     </section>
-    <section class='space-y-5'>
+    <section id='project' class='space-y-5'>
       <h2 class='text-xl font-semibold'>Some of my work:</h2>
       <div class='flex flex-wrap gap-5'>
         {
@@ -69,12 +69,12 @@ projects = projects.map(p => {
         }
       </div>
     </section>
-    <section class='space-y-5'>
+    <section id='contact' class='space-y-5'>
       <h2 class='text-xl font-semibold'>Follow me at:</h2>
       <div class='flex flex-wrap gap-5'>
         {contact.map(c => <Badge img={c.img} bg={c.bg} text={c.text} link={c.link} />)}
       </div>
     </section>
   </main>
-  <aside class='bg-green-500 w-full'></aside>
+  <!-- <aside class='bg-green-500 w-full'></aside> -->
 </Layout>
