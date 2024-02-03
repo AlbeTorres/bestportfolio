@@ -78,4 +78,7 @@ export const skills = [
   },
 ]
 
-export const project = [549815016, 545719459]
+export const project = [
+  { id: 549815016, url: 'https://kiosko-pi.vercel.app/' },
+  { id: 545719459, url: 'https://kiosko-pi.vercel.app/' },
+]

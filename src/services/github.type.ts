@@ -79,6 +79,7 @@ export type Github = {
   watchers: number
   default_branch: string
   permissions: Permissions
+  deploy_link: string | undefined
 }
 
 export type Owner = {

@@ -3,9 +3,10 @@ interface Props {
   title: string
   body: string | null
   href: string
+  deploy: string | undefined
 }
 
-const { href, title, body } = Astro.props
+const { href, title, body, deploy } = Astro.props
 ---
 
 <div class='p-4 gap-y-2 flex flex-col justify-between border-2 rounded-md md:max-w-80'>
@@ -26,7 +27,10 @@ const { href, title, body } = Astro.props
     >
       <img src='github.svg' alt='' class='w-full h-full object-cover' /></a
     >
-    <a href='' class='hover:bg-black w-10 h-10 hover:rounded-full p-1 hover:h-fit transition-all'
+    <a
+      href={deploy}
+      target='_blank'
+      class='hover:bg-black w-10 h-10 hover:rounded-full p-1 hover:h-fit transition-all'
       ><img src='web.svg' alt='' class='w-full h-full object-cover' /></a
     >
   </div>

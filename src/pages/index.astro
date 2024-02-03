@@ -9,26 +9,33 @@ import type { Github } from '../services/github.type'
 import { contact, project, skills } from '../utils/data'
 
 const res = await fetchGithubReposInfo()
-const projects = res.filter(p => project.includes(p.id))
+let projects = res.filter(p => project.find(aux => p.id === aux.id))
+
+projects = projects.map(p => {
+  let object = project.find(aux => p.id === aux.id)
+  return { ...p, deploy_link: object?.url }
+})
 ---
 
 <Layout title='Alberto Torres.'>
-  <main class='w-full space-y-8 pb-5'>
-    <div class='w-full flex'>
-      <figure class='w-60 md:w-[30rem]'>
-        <img
-          src='albe-dev.webp'
-          alt='imagen de programador rubio pixelado'
-          class='w-16 h-20 object-cover float-left mr-1'
-        />
-        <h2 class='text-2xl mt-14 z-0 font-semibold'>Hello there! I'm Alberto Torres 👋</h2>
-      </figure>
-    </div>
+  <main class='w-full space-y-16 pb-5'>
+    <section class='space-y-3'>
+      <div class='w-full flex'>
+        <figure class='w-60 md:w-[30rem]'>
+          <img
+            src='albe-dev.webp'
+            alt='imagen de programador rubio pixelado'
+            class='w-16 h-20 object-cover float-left mr-1'
+          />
+          <h2 class='text-2xl mt-14 z-0 font-semibold'>Hello there! I'm Alberto Torres 👋</h2>
+        </figure>
+      </div>
 
-    <h3 class=''>
-      A passionate freelance fullstack software engineer based in Miami. With over three years of
-      experience.
-    </h3>
+      <h3 class=''>
+        A passionate freelance fullstack software engineer based in Miami. With over three years of
+        experience.
+      </h3>
+    </section>
 
     <section class='space-y-5'>
       <h2 class='text-xl font-semibold'>Specialized in:</h2>
@@ -36,32 +43,34 @@ const projects = res.filter(p => project.includes(p.id))
         {skills.map(skill => <Badge img={skill.img} bg={skill.bg} text={skill.text} />)}
       </div>
     </section>
-
-    <article>
-      🚀 My journey includes collaborating with startups, contributing to the development of a
-      marketplace, and creating a platform connecting businesses and freelancers. I excel in Git,
-      GitHub, agile methodologies like Scrum, and Jira for project management.
-    </article>
-    <article>
-      🎓 As a perpetual learner, I'm always exploring new realms of software development. My goal?
-      Empowering others to elevate their skills, create businesses, and boost their income.
-    </article>
-    <article>
-      💻 Currently, I'm focused on building my personal brand online, aiming to share knowledge and
-      assist aspiring developers. Let's connect, collaborate, and code for success! 🚀
-    </article>
+    <section class='space-y-5'>
+      <h2 class='text-xl font-semibold'>About me:</h2>
+      <article>
+        🚀 My journey includes collaborating with startups, contributing to the development of a
+        marketplace, and creating a platform connecting businesses and freelancers. I excel in Git,
+        GitHub, agile methodologies like Scrum, and Jira for project management.
+      </article>
+      <article>
+        🎓 As a perpetual learner, I'm always exploring new realms of software development. My goal?
+        Empowering others to elevate their skills, create businesses, and boost their income.
+      </article>
+      <article>
+        💻 Currently, I'm focused on building my personal brand online, aiming to share knowledge
+        and assist aspiring developers. Let's connect, collaborate, and code for success! 🚀
+      </article>
+    </section>
     <section class='space-y-5'>
       <h2 class='text-xl font-semibold'>Some of my work:</h2>
       <div class='flex flex-wrap gap-5'>
         {
           projects.map((p: Github) => (
-            <Card title={p.name} body={p.description} href={p.html_url} />
+            <Card title={p.name} body={p.description} href={p.html_url} deploy={p.deploy_link} />
           ))
         }
       </div>
     </section>
     <section class='space-y-5'>
-      <h2 class='text-xl font-semibold'>Contact me at:</h2>
+      <h2 class='text-xl font-semibold'>Follow me at:</h2>
       <div class='flex flex-wrap gap-5'>
         {contact.map(c => <Badge img={c.img} bg={c.bg} text={c.text} link={c.link} />)}
       </div>
