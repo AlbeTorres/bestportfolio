@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { slugify } from '../utils/functions'
+
+const { frontmatter } = Astro.props
+const { title, description, category, date, author, image } = frontmatter
+---
+
+<Layout title={title} description={description}>
+  <header>
+    <div>
+      <small>
+        <a
+          href=`/category/${slugify(category) }`
+          class='p-2 bg-blue-700 text-white text-center shadow-md'>{category}</a
+        >
+      </small>
+      <h1>{title}</h1>
+      <p>by <a href={`/author/${slugify(author)}`}>{author} / {date}</a></p>
+    </div>
+    <img src={image.src} alt={image.alt} />
+  </header>
+  <div>
+    <div>
+      <slot />
+    </div>
+  </div>
+</Layout>
