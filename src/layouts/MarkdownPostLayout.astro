@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets'
+import { slugify } from '../utils/functions'
+import Layout from './Layout.astro'
+
+type Blog = {
+  title: string
+  date: string
+  author: string
+  image: { src: string; alt: string }
+  description: string
+  draft: false
+  tags: string[]
+}
+
+interface Props {
+  frontmatter: Blog
+}
+
+const { frontmatter } = Astro.props
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <header class='mb-5'>
+    <div class='flex flex-col gap-y-4 mb-5'>
+      <div class='space-y-2 gap-y-2'>
+        <h1 class='text-3xl font-bold'>{frontmatter.title}</h1>
+        <p class='text-xs'>
+          by <a href={`/author/${slugify(frontmatter.author)}`}
+            >{frontmatter.author} / {frontmatter.date}</a
+          >
+        </p>
+      </div>
+
+      <div class='flex items-center flex-wrap justify-start gap-4'>
+        {
+          frontmatter.tags.map(c => (
+            <a
+              href={`/category/${slugify(c)}`}
+              class='p-2 bg-blue-700 text-white text-center shadow-md'
+            >
+              {c}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <Image
+      src={frontmatter.image.src}
+      alt={frontmatter.image.alt}
+      width={1150}
+      height={400}
+      format='webp'
+      class='w-full h-full md:max-w-[1150px] md:max-h-[400px] object-cover'
+    />
+  </header>
+  <div>
+    <div>
+      <slot />
+    </div>
+  </div>
+</Layout>
