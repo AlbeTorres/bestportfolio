@@ -1,0 +1,38 @@
+---
+const { title, description = '', url = '', image = '' } = Astro.props
+---
+
+<!-- Global Metadata -->
+<meta charset='UTF-8' />
+<meta name='viewport' content='width=device-width' />
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name='title' content={title} />
+{description && <meta name='description' content={description} />}
+<!-- Favicon -->
+<link rel='icon' type='image/svg+xml' href='/albe-dev.webp' />
+
+<!-- Open Graph / Facebook -->
+<meta property='og:type' content='website' />
+{url && <meta property='og:url' content={url} />}
+<meta property='og:title' content={title} />
+{description && <meta property='og:description' content={description} />}
+{image && <meta name='og:image' content={image} />}
+<!-- Twitter -->
+<meta property='twitter:card' content='summary' />
+{url && <meta property='twitter:url' content={url} />}
+<meta property='twitter:title' content={title} />
+{description && <meta property='twitter:description' content={description} />}
+{image && <meta name='twitter:image:src' content={image} />}
+
+<!--  -->
+
+<meta name='author' content='Alberto Torres Reyes' />
+
+<link rel='sitemap' type='application/xml' href='/sitemap-index.xml' />
+
+<meta name='copyright' content='ISC' />
+
+<meta name='generator' content={Astro.generator} />
+
+<!--  -->

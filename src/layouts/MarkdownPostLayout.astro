@@ -7,9 +7,17 @@ type Blog = {
   title: string
   date: string
   author: string
-  image: { src: string; alt: string }
+  image: {
+    src: {
+      height: number
+      src: string
+      width: number
+      format: 'avif' | 'png' | 'webp' | 'jpeg' | 'jpg' | 'svg' | 'tiff' | 'gif'
+    }
+    alt: string
+  }
   description: string
-  draft: false
+  draft: string
   tags: string[]
 }
 
