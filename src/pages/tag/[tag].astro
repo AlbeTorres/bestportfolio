@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content'
+import Blogpost from '../../components/Blogpost.astro'
 import Layout from '../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
@@ -20,8 +21,20 @@ const { posts } = Astro.props
 ---
 
 <Layout title={tag}>
-  <p>Posts tagged with {tag}</p>
-  <ul>
-    {posts.map(p => <a href={`/posts/${p.slug}/`}>{p.data.title}</a>)}
-  </ul>
+  <main>
+    <p>Posts tagged with {tag}</p>
+    <ul>
+      {
+        posts.map(p => (
+          <Blogpost
+            title={p.data.title}
+            img={p.data.image}
+            url={p.slug}
+            desc={p.data.description}
+            tags={p.data.tags}
+          />
+        ))
+      }
+    </ul>
+  </main>
 </Layout>

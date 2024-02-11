@@ -1,0 +1,60 @@
+---
+type Props = {
+  title: string
+  img: {
+    src: {
+      src: string
+      width: number
+      height: number
+      format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg' | 'avif'
+    }
+    alt: string
+  }
+  desc?: string
+  url: string
+  badge?: string
+  tags: string[]
+  target?: '_blank'
+}
+
+const { title, img, desc, url, badge, tags, target } = Astro.props
+import { Image } from 'astro:assets'
+import { slugify } from '../utils/functions'
+---
+
+<div class='w-full'>
+  <a href={`/posts/${url}`} target={target}>
+    <div
+      class='transition flex md:flex-row flex-col gap-x-4 rounded-md items-center h-44 ease-in-out hover:shadow-xl my-2 hover:scale-[102%]'
+    >
+      <Image
+        width={750}
+        height={422}
+        format='webp'
+        class='h-full w-full md:w-72 object-cover rounded-md'
+        src={img.src}
+        alt={title}
+      />
+      <div class='h-full w-full flex flex-col justify-center gap-y-4'>
+        <h2 class='font-bold text-xl md:text-2xl'>
+          {title}
+          {badge && <div class='badge badge-secondary'>{badge}</div>}
+        </h2>
+        <p>{desc}</p>
+        <div class=''>
+          {
+            tags &&
+              tags.map(c => (
+                <a
+                  href={`/tag/${slugify(c)}`}
+                  class='p-2 mr-2 bg-blue-700 text-white text-center shadow-md'
+                >
+                  {c}
+                </a>
+              ))
+          }
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
