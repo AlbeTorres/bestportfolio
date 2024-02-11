@@ -1,0 +1,15 @@
+---
+import { Image } from 'astro:assets'
+import logodev from '../assets/img/albe-dev.webp'
+---
+
+<a href='/'>
+  <figure id='logo' class='flex items-end py-2'>
+    <Image
+      src={logodev}
+      alt='imagen de programador rubio pixelado'
+      class='w-12 h-14 object-cover'
+    />
+    <p>albe_torres</p>
+  </figure>
+</a>

@@ -7,6 +7,10 @@ interface Props {
 }
 
 const { href, title, body, deploy } = Astro.props
+
+import { Image } from 'astro:assets'
+import github from '../icons/github.svg'
+import web from '../icons/web.svg'
 ---
 
 <div class='p-4 gap-y-2 flex flex-col justify-between border-2 rounded-md md:max-w-80'>
@@ -25,13 +29,13 @@ const { href, title, body, deploy } = Astro.props
       target='_blank'
       class='hover:bg-black w-10 h-10 hover:rounded-full p-1 hover:h-fit transition-all'
     >
-      <img src='github.svg' alt='' class='w-full h-full object-cover' /></a
+      <Image src={github} alt='' class='w-full h-full object-cover' /></a
     >
     <a
       href={deploy}
       target='_blank'
       class='hover:bg-black w-10 h-10 hover:rounded-full p-1 hover:h-fit transition-all'
-      ><img src='web.svg' alt='' class='w-full h-full object-cover' /></a
+      ><Image src={web} alt='' class='w-full h-full object-cover' /></a
     >
   </div>
 </div>

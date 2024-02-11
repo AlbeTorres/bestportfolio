@@ -7,10 +7,10 @@ const postsCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      date: z.string(),
+      date: z.date(),
       description: z.string(),
       author: z.string(),
-      draft: z.string(),
+      draft: z.boolean(),
       image: z.object({
         src: image().refine(img => img.width >= 1050, {
           message: 'Cover image must be at least 1050 pixels wide!',
@@ -24,3 +24,22 @@ const postsCollection = defineCollection({
 export const collections = {
   posts: postsCollection,
 }
+
+// const blogCollection = defineCollection({
+//   type: 'content',
+//   schema: z.object({ /* ... */ })
+// });
+// const newsletter = defineCollection({
+//   type: 'content',
+//   schema: z.object({ /* ... */ })
+// });
+// const authors = defineCollection({
+//   type: 'data',
+//   schema: z.object({ /* ... */ })
+// });
+
+// export const collections = {
+//   'blog': blogCollection,
+//   'newsletter': newsletter,
+//   'authors': authors,
+// };
