@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions'
+import Footer from '../components/Footer.astro'
 import HeadBase from '../components/HeadBase.astro'
 import Header from '../components/Header.astro'
 
@@ -20,6 +21,7 @@ const { title, description } = Astro.props
   <body>
     <Header />
     <slot />
+    <Footer />
     <style is:global>
       @tailwind base;
       @tailwind components;
@@ -43,6 +45,16 @@ const { title, description } = Astro.props
         background: #0d1117;
         width: 90%;
         margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex-grow: 3;
+      }
+      header,
+      footer {
+        flex-grow: 0;
       }
 
       @media screen and (min-width: 768px) {

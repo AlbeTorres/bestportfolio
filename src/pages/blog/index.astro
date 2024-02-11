@@ -6,5 +6,7 @@ const allPosts = await getCollection('posts')
 ---
 
 <Layout title='Alberto Torres 👨‍💻| Software Engineer'>
-  <div>{allPosts.map(p => <a href={`/posts/${p.slug}/`}>{p.data.title}</a>)}</div>
+  <main>
+    <div>{allPosts.map(p => <a href={`/posts/${p.slug}/`}>{p.data.title}</a>)}</div>
+  </main>
 </Layout>
