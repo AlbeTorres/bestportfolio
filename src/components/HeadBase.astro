@@ -18,13 +18,13 @@ import logo from '../assets/img/albe-dev.webp'
 {url && <meta property='og:url' content={url} />}
 <meta property='og:title' content={title} />
 {description && <meta property='og:description' content={description} />}
-{image && <meta name='og:image' content={image} />}
+{(<meta name='og:image' content={image ? image : logo.src} />)}
 <!-- Twitter -->
 <meta property='twitter:card' content='summary' />
 {url && <meta property='twitter:url' content={url} />}
 <meta property='twitter:title' content={title} />
 {description && <meta property='twitter:description' content={description} />}
-{image && <meta name='twitter:image:src' content={image} />}
+{(<meta name='twitter:image:src' content={image ? image : logo.src} />)}
 
 <!--  -->
 
