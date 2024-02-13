@@ -8,7 +8,8 @@ const allPosts = await getCollection('posts')
 
 <Layout title='Alberto Torres 👨‍💻| Software Engineer'>
   <main>
-    <div>
+    <h1 class='text-3xl font-bold my-5'>Blog:</h1>
+    <div class='w-full'>
       {
         allPosts.map(p => (
           <Blogpost

@@ -22,10 +22,10 @@ import { Image } from 'astro:assets'
 import { slugify } from '../utils/functions'
 ---
 
-<div class='w-full'>
-  <a href={`/posts/${url}`} target={target}>
+<div class='py-4 md:py-2 border-b' '>
+  <a class='' href={`/posts/${url}`} target={target}>
     <div
-      class='transition flex md:flex-row flex-col gap-x-4 rounded-md items-center h-44 ease-in-out hover:shadow-xl my-2 hover:scale-[102%]'
+      class='transition h-full p-2 w-full flex md:flex-row flex-col gap-x-4 rounded-md items-center md:h-44 ease-in-out hover:shadow-xl my-2 hover:scale-[102%]'
     >
       <Image
         width={750}
