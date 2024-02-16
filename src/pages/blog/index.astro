@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import Blogpost from '../../components/Blogpost.astro'
 import Layout from '../../layouts/Layout.astro'
+import { slugify } from '../../utils/functions'
 
 const allPosts = await getCollection('posts')
 ---
@@ -18,7 +19,7 @@ const allPosts = await getCollection('posts')
           <Blogpost
             title={p.data.title}
             img={p.data.image}
-            url={p.slug}
+            url={slugify(p.data.title)}
             desc={p.data.description}
             tags={p.data.tags}
           />
