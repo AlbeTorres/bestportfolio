@@ -3,7 +3,9 @@ import Logo from './Logo.astro'
 import Nav from './Nav.astro'
 ---
 
-<header class='w-full sticky top-0 bg-graydark shadow-md h-20 flex py-2 justify-between'>
-  <Logo />
-  <Nav />
+<header class='w-full sticky z-50 top-0 bg-graydark shadow-md h-20'>
+  <div class='container flex py-2 justify-between'>
+    <Logo />
+    <Nav />
+  </div>
 </header>

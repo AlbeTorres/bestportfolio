@@ -20,8 +20,10 @@ const { title, description } = Astro.props
   </head>
   <body>
     <Header />
-    <slot />
-    <Footer />
+    <div class='container'>
+      <slot />
+      <Footer />
+    </div>
     <style is:global>
       @tailwind base;
       @tailwind components;
@@ -43,11 +45,14 @@ const { title, description } = Astro.props
       }
       body {
         background: #0d1117;
-        width: 90%;
-        margin: 0 auto;
+
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+      }
+      .container {
+        width: 90%;
+        margin: 0 auto;
       }
       main {
         flex-grow: 3;
@@ -58,7 +63,7 @@ const { title, description } = Astro.props
       }
 
       @media screen and (min-width: 768px) {
-        body {
+        .container {
           width: 80%;
           margin: 0 auto;
         }
