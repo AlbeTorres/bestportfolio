@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components'
+
+type Props = {
+  text: string
+  url: string
+  leftIcon?: string
+  rigthIcon?: string
+  auxclass?: string
+}
+
+const { text, url, leftIcon, rigthIcon, auxclass } = Astro.props
+---
+
+<a
+  href={url}
+  class:list={[
+    'py-1 px-2 hover:bg-gray-400 hover:text-black flex items-center w-fit',
+    `${auxclass}`,
+  ]}
+>
+  {leftIcon && <Icon name={leftIcon} class='h-10 w-10 object-cover' />}
+  <p class='w-fit uppercase font-semibold text-sm'>{text}</p>
+  {rigthIcon && <Icon name={rigthIcon} class='h-10 w-10 object-cover' />}
+</a>

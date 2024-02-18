@@ -1,14 +1,28 @@
 ---
 import { getCollection } from 'astro:content'
 import Blogpost from '../../components/Blogpost.astro'
+import Pagination from '../../components/Pagination.astro'
 import Layout from '../../layouts/Layout.astro'
 import { slugify } from '../../utils/functions'
+import type { post } from '../../utils/type'
+// @ts-ignore
+export async function getStaticPaths({ paginate }) {
+  const filteredPosts = await getCollection('posts')
+  filteredPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  return paginate(filteredPosts, { pageSize: 4 })
+}
 
-const filteredPosts = await getCollection('posts', p => {
-  if (p.data.draft !== true && new Date(p.data.date) < new Date()) {
-    return p
+type Props = {
+  page: {
+    data: { data: post }[]
+    url: {
+      prev: string
+      next: string
+    }
   }
-})
+}
+
+const { page } = Astro.props
 ---
 
 <Layout
@@ -19,7 +33,7 @@ const filteredPosts = await getCollection('posts', p => {
     <h1 class='text-3xl font-bold my-5'>Blog:</h1>
     <div class='w-full'>
       {
-        filteredPosts.map(p => (
+        page.data.map(p => (
           <Blogpost
             title={p.data.title}
             image={p.data.image}
@@ -33,5 +47,6 @@ const filteredPosts = await getCollection('posts', p => {
         ))
       }
     </div>
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
   </main>
 </Layout>

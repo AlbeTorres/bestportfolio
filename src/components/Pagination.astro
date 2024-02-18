@@ -1,0 +1,17 @@
+---
+import Link from './Link.astro'
+
+type Props = {
+  prevUrl: string
+  nextUrl: string
+}
+const { prevUrl, nextUrl } = Astro.props
+---
+
+<nav
+  aria-label='Blog pages'
+  class:list={['w-full" flex  h-fit mt-5 relative', !prevUrl ? 'justify-end' : 'justify-between']}
+>
+  {prevUrl && <Link leftIcon='leftarrow' text='Recent Post' url={prevUrl} auxclass='' />}
+  {nextUrl && <Link rigthIcon='rigtharrow' text='Older Post' url={nextUrl} />}
+</nav>
