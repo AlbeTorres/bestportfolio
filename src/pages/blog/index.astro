@@ -4,7 +4,11 @@ import Blogpost from '../../components/Blogpost.astro'
 import Layout from '../../layouts/Layout.astro'
 import { slugify } from '../../utils/functions'
 
-const allPosts = await getCollection('posts')
+const filteredPosts = await getCollection('posts', p => {
+  if (p.data.draft !== true && new Date(p.data.date) < new Date()) {
+    return p
+  }
+})
 ---
 
 <Layout
@@ -15,7 +19,7 @@ const allPosts = await getCollection('posts')
     <h1 class='text-3xl font-bold my-5'>Blog:</h1>
     <div class='w-full'>
       {
-        allPosts.map(p => (
+        filteredPosts.map(p => (
           <Blogpost
             title={p.data.title}
             image={p.data.image}

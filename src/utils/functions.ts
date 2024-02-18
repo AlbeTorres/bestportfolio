@@ -37,4 +37,14 @@ export function formatBlogposts(
 
     return acc
   }, [] as post[])
+
+  if (sortByDate) {
+    filteredPosts.sort((a, b) => b.date.getTime() - a.date.getTime())
+  }
+
+  if (limit) {
+    return filteredPosts.slice(0, limit)
+  }
+
+  return filteredPosts
 }
