@@ -18,10 +18,13 @@ const allPosts = await getCollection('posts')
         allPosts.map(p => (
           <Blogpost
             title={p.data.title}
-            img={p.data.image}
+            image={p.data.image}
             url={slugify(p.data.title)}
-            desc={p.data.description}
+            description={p.data.description}
             tags={p.data.tags}
+            author={p.data.author}
+            date={p.data.date}
+            draft={p.data.draft}
           />
         ))
       }

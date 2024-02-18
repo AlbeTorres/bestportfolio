@@ -1,25 +1,10 @@
 ---
-type Props = {
-  title: string
-  img: {
-    src: {
-      src: string
-      width: number
-      height: number
-      format: 'png' | 'jpg' | 'jpeg' | 'tiff' | 'webp' | 'gif' | 'svg' | 'avif'
-    }
-    alt: string
-  }
-  desc?: string
-  url: string
-  badge?: string
-  tags: string[]
-  target?: '_blank'
-}
-
-const { title, img, desc, url, badge, tags, target } = Astro.props
 import { Image } from 'astro:assets'
-import { slugify } from '../utils/functions'
+import { formatDate, slugify } from '../utils/functions'
+import type { post } from '../utils/type'
+type Props = post
+
+const { title, image, description, url, badge, tags, target, author, date } = Astro.props
 ---
 
 <div class='py-4 md:py-2 border-b' '>
@@ -32,7 +17,7 @@ import { slugify } from '../utils/functions'
         height={422}
         format='webp'
         class='h-full w-full md:w-72 object-cover rounded-md'
-        src={img.src}
+        src={image.src}
         alt={title}
       />
       <div class='h-full w-full flex flex-col justify-center gap-y-4'>
@@ -40,7 +25,11 @@ import { slugify } from '../utils/functions'
           {title}
           {badge && <div class='badge badge-secondary'>{badge}</div>}
         </h2>
-        <p>{desc}</p>
+        <p>{description}</p>
+        <div class='flex items-center gap-2'>
+          <p>{author}</p>
+          <p>{formatDate(date)}</p>
+        </div>
         <div class=''>
           {
             tags &&

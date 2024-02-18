@@ -1,3 +1,4 @@
+import type { post } from '../utils/type'
 export function slugify(text: string) {
   return text
     .toString()
@@ -13,4 +14,27 @@ export function formatDate(date: Date) {
   return new Date(date).toLocaleDateString('en-US', {
     timeZone: 'UTC',
   })
+}
+
+type filter = {
+  filterOutDrafts: boolean
+  filterOutFuturePost: boolean
+  sortByDate: boolean
+  limit: undefined | number
+}
+
+export function formatBlogposts(
+  posts: post[],
+  { filterOutDrafts = true, filterOutFuturePost = true, sortByDate = true, limit }: filter
+) {
+  const filteredPosts = posts.reduce((acc, p) => {
+    const { draft, date } = p
+    if (filterOutDrafts && draft) return acc
+
+    if (filterOutFuturePost && new Date(date) > new Date()) return acc
+
+    acc.push(p)
+
+    return acc
+  }, [] as post[])
 }

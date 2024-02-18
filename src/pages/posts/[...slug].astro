@@ -15,6 +15,6 @@ const { entry } = Astro.props
 const { Content } = await entry.render()
 ---
 
-<MarkdownPostLayout frontmatter={{ ...entry.data, date: entry.data.date.toString().slice(0, 10) }}>
+<MarkdownPostLayout frontmatter={entry.data}>
   <Content />
 </MarkdownPostLayout>

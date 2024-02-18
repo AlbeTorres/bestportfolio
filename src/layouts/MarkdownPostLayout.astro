@@ -1,28 +1,11 @@
 ---
 import { Image } from 'astro:assets'
 import { slugify } from '../utils/functions'
+import type { post } from '../utils/type'
 import Layout from './Layout.astro'
 
-type Blog = {
-  title: string
-  date: string
-  author: string
-  image: {
-    src: {
-      height: number
-      src: string
-      width: number
-      format: 'avif' | 'png' | 'webp' | 'jpeg' | 'jpg' | 'svg' | 'tiff' | 'gif'
-    }
-    alt: string
-  }
-  description: string
-  draft: boolean
-  tags: string[]
-}
-
 interface Props {
-  frontmatter: Blog
+  frontmatter: post
 }
 
 const { frontmatter } = Astro.props
