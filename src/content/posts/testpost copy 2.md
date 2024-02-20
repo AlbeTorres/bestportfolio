@@ -7,7 +7,7 @@ image: { src: "./covers/test.jpg" ,
 alt: "a picture of a coder"}
 description: "post de prueba"
 draft: false
-tags: [js, programacion, dev]
+tags: [js, Programacion, dev]
 ---
 
 

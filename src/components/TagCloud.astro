@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+
+interface TagCount {
+  [key: string]: number
+}
+
+const filteredPosts = await getCollection('posts', p => {
+  if (p.data.draft !== true && new Date(p.data.date) < new Date()) {
+    return p
+  }
+})
+const allTags = filteredPosts.map(post => post.data.tags.map(t => t.toLowerCase())).flat()
+const processedCats = allTags.reduce((acc: TagCount, tag: string) => {
+  const value = acc[tag] || 0
+
+  return {
+    ...acc,
+    [tag]: value + 1,
+  }
+}, {})
+
+console.log(processedCats)
+---
+
+<div>
+  <h3>Tags:</h3>
+</div>

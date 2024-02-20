@@ -7,7 +7,11 @@ import { slugify } from '../../utils/functions'
 import type { post } from '../../utils/type'
 // @ts-ignore
 export async function getStaticPaths({ paginate }) {
-  const filteredPosts = await getCollection('posts')
+  const filteredPosts = await getCollection('posts', p => {
+    if (p.data.draft !== true && new Date(p.data.date) < new Date()) {
+      return p
+    }
+  })
   filteredPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   return paginate(filteredPosts, { pageSize: 4 })
 }
