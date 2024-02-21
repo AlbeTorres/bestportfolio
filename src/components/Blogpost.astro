@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { formatDate, slugify } from '../utils/functions'
+import { formatDate } from '../utils/functions'
 import type { post } from '../utils/type'
 type Props = post
 
@@ -26,22 +26,9 @@ const { title, image, description, url, badge, tags, target, author, date } = As
           {badge && <div class='badge badge-secondary'>{badge}</div>}
         </h2>
         <p>{description}</p>
-        <div class='flex items-center gap-2'>
-          <p>{author}</p>
+        <div class='flex items-center text-xs gap-2'>
+          <p>{author}</p>-
           <p>{formatDate(date)}</p>
-        </div>
-        <div class=''>
-          {
-            tags &&
-              tags.map(c => (
-                <a
-                  href={`/tag/${slugify(c)}`}
-                  class='p-2 mr-2 bg-blue-700 text-white text-center shadow-md'
-                >
-                  {c}
-                </a>
-              ))
-          }
         </div>
       </div>
     </div>

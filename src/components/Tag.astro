@@ -1,0 +1,14 @@
+---
+import { slugify } from '../utils/functions'
+
+type Props = {
+  tagname: string
+  count?: number
+}
+
+const { tagname, count } = Astro.props
+---
+
+<a href={`/tag/${slugify(tagname)}`} class='p-2 mr-2 bg-blue-700 text-white text-center shadow-md'>
+  {tagname}: {count}
+</a>

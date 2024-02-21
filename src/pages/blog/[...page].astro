@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import Blogpost from '../../components/Blogpost.astro'
 import Pagination from '../../components/Pagination.astro'
+import TagCloud from '../../components/TagCloud.astro'
 import Layout from '../../layouts/Layout.astro'
 import { slugify } from '../../utils/functions'
 import type { post } from '../../utils/type'
@@ -52,5 +53,6 @@ const { page } = Astro.props
       }
     </div>
     <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    <TagCloud />
   </main>
 </Layout>
