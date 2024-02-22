@@ -1,5 +1,7 @@
 ---
 import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import RelatedPost from '../components/RelatedPost.astro'
 import { slugify } from '../utils/functions'
 import type { post } from '../utils/type'
 import Layout from './Layout.astro'
@@ -9,6 +11,21 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props
+
+const filtredPosts = await getCollection('posts', p => {
+  if (
+    p.data.draft !== true &&
+    new Date(p.data.date) < new Date() &&
+    p.data.tags.some(t => frontmatter.tags.includes(t)) &&
+    p.data.title !== frontmatter.title
+  ) {
+    return p
+  }
+})
+
+const relatedPosts = filtredPosts.slice(0, 4)
+
+console.log(filtredPosts)
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
@@ -43,8 +60,7 @@ const { frontmatter } = Astro.props
     />
   </header>
   <div>
-    <div>
-      <slot />
-    </div>
+    <slot />
+    <RelatedPost frontmatter={relatedPosts} />
   </div>
 </Layout>

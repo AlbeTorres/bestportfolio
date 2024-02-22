@@ -1,13 +1,13 @@
 ---
-title: "Diferencia entre loop hill, funciones autogeneradas, async await y otros conceptos chinos de javascript."
+title: "Diferencia autogeneradas, async await y otros conceptos chinos de javascript."
 
-date: 2024-05-06 
+date: 2024-02-01 
 author: "Albe Torres"
 image: { src: "./covers/test.jpg" ,
 alt: "a picture of a coder"}
 description: "post de prueba"
 draft: false
-tags: [js, programacion, dev]
+tags: [dev]
 ---
 
 
