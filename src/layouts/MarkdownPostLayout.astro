@@ -24,8 +24,6 @@ const filtredPosts = await getCollection('posts', p => {
 })
 
 const relatedPosts = filtredPosts.slice(0, 4)
-
-console.log(filtredPosts)
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
@@ -39,16 +37,6 @@ console.log(filtredPosts)
           >
         </p>
       </div>
-
-      <div class='flex items-center flex-wrap justify-start gap-4'>
-        {
-          frontmatter.tags.map(c => (
-            <a href={`/tag/${slugify(c)}`} class='p-2 bg-blue-700 text-white text-center shadow-md'>
-              {c}
-            </a>
-          ))
-        }
-      </div>
     </div>
     <Image
       src={frontmatter.image.src}
@@ -59,8 +47,22 @@ console.log(filtredPosts)
       class='w-full h-full md:max-w-[1150px] md:max-h-[400px] object-cover'
     />
   </header>
-  <div>
-    <slot />
-    <RelatedPost frontmatter={relatedPosts} />
+  <div class='lg:grid lg:grid-cols-[auto_30%] gap-x-4 relative overflow-auto'>
+    <div>
+      <slot />
+    </div>
+    <div class='sticky top-20'>
+      <h3 class='text-lg font-bold my-4'>Tags:</h3>
+      <div class='flex items-center flex-wrap justify-start gap-4'>
+        {
+          frontmatter.tags.map(c => (
+            <a href={`/tag/${slugify(c)}`} class='p-2 bg-blue-700 text-white text-center shadow-md'>
+              {c}
+            </a>
+          ))
+        }
+      </div>
+      <RelatedPost frontmatter={relatedPosts} />
+    </div>
   </div>
 </Layout>

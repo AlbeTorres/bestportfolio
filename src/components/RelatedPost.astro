@@ -1,7 +1,7 @@
 ---
+import { Image } from 'astro:assets'
 import { slugify } from '../utils/functions'
 import type { post } from '../utils/type'
-import PostVerticalCard from './PostVerticalCard.astro'
 type Props = {
   frontmatter: { data: post }[]
 }
@@ -10,20 +10,26 @@ const { frontmatter } = Astro.props
 ---
 
 <section class='py-4'>
-  <h3 class='mb-2 font-semibold text-lg'>Related post:</h3>
+  {frontmatter.length !== 0 && <h3 class='mb-2 font-semibold text-lg'>Related post:</h3>}
   <div class='w-full flex items-center flex-wrap gap-4 md:gap-x-4 py-4'>
     {
       frontmatter.map(p => (
-        <PostVerticalCard
-          title={p.data.title}
-          image={p.data.image}
-          url={slugify(p.data.title)}
-          description={p.data.description}
-          tags={p.data.tags}
-          author={p.data.author}
-          date={p.data.date}
-          draft={p.data.draft}
-        />
+        <a class='block' href={`/posts/${slugify(p.data.title)}`}>
+          <div class='flex gap-x-2 justify-start'>
+            <Image
+              src={p.data.image.src}
+              alt={p.data.image.alt}
+              width={100}
+              height={100}
+              format='webp'
+              class='w-20 h-20 object-cover rounded-md'
+            />
+            <div>
+              <h4 class='line-clamp-2 font-semibold'>{p.data.title}</h4>
+              <p class='text-xs'>{p.data.author}</p>
+            </div>
+          </div>
+        </a>
       ))
     }
   </div>

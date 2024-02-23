@@ -23,8 +23,8 @@ const processedCats = allTags.reduce((acc: TagCount, tag: string) => {
 ---
 
 <div>
-  <h3 class='text-lg font-bold my-5'>Tags:</h3>
-  <div>
+  <h3 class='text-lg font-bold my-4'>Tags:</h3>
+  <div class='space-y-2'>
     {Object.entries(processedCats).map(([key, value]) => <Tag tagname={key} count={value} />)}
   </div>
 </div>

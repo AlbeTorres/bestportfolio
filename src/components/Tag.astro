@@ -9,6 +9,10 @@ type Props = {
 const { tagname, count } = Astro.props
 ---
 
-<a href={`/tag/${slugify(tagname)}`} class='p-2 mr-2 bg-blue-700 text-white text-center shadow-md'>
-  {tagname}: {count}
+<a
+  href={`/tag/${slugify(tagname)}`}
+  class='p-2 inline-block mr-2 bg-blue-700 text-white text-center shadow-md'
+>
+  {tagname}
+  {count}
 </a>
