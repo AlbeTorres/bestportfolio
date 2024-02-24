@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "albedev",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -17,7 +17,13 @@
     "astro": "^4.3.5",
     "astro-icon": "^1.1.0",
     "axios": "^1.6.7",
+    "markdown-it": "^14.0.0",
+    "sanitize-html": "^2.12.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^13.0.7",
+    "@types/sanitize-html": "^2.11.0"
   }
 }
