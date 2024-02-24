@@ -63,6 +63,17 @@ projects = projects.map(p => {
             <Card title={p.name} body={p.description} href={p.html_url} deploy={p.deploy_link} />
           ))
         }
+        <!-- {
+          projects.map((p: Github) => (
+            <PostVerticalCard
+              title={p.name}
+              description={p.description}
+              url={p.html_url}
+              deploy={p.deploy_link}
+              image={null}
+            />
+          ))
+        } -->
       </div>
     </section>
     <section id='contact' class='space-y-5'>

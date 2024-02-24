@@ -9,7 +9,7 @@ export type post = {
     }
     alt: string
   }
-  description?: string
+  description?: string | null
   url?: string
   badge?: string
   tags: string[]

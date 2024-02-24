@@ -1,21 +1,30 @@
 ---
 import { Image } from 'astro:assets'
-import type { post } from '../utils/type'
-type Props = post
+type Props = {
+  title: string
+  description?: string | null
+  url: string
+  deploy?: string | null
+  image: string | null
+}
 
-const { title, image, url, description } = Astro.props
+const { title, image, url, description, deploy } = Astro.props
 ---
 
 <div class='max-w-sm md:max-w-48 lg:max-w-60 rounded-md shadow'>
   <a href={`/posts/${url}`}>
-    <Image
-      src={image.src}
-      alt={image.alt}
-      width={450}
-      height={200}
-      format='webp'
-      class='w-full h-full object-cover rounded-t-md'
-    />
+    {
+      image && (
+        <Image
+          src={image}
+          alt={title}
+          width={450}
+          height={200}
+          format='webp'
+          class='w-full h-full object-cover rounded-t-md'
+        />
+      )
+    }
   </a>
   <div class='py-2 grid grid-rows-[40%_40%_20%] h-36 md:h-52'>
     <a href={`/posts/${url}`}>
@@ -30,6 +39,26 @@ const { title, image, url, description } = Astro.props
     </p>
     <a
       href={`/posts/${url}`}
+      class='inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+    >
+      Read more
+      <svg
+        class='rtl:rotate-180 w-3.5 h-3.5 ms-2'
+        aria-hidden='true'
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 14 10'
+      >
+        <path
+          stroke='currentColor'
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          stroke-width='2'
+          d='M1 5h12m0 0L9 1m4 4L9 9'></path>
+      </svg>
+    </a>
+    <a
+      href={`/posts/${deploy}`}
       class='inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
     >
       Read more
