@@ -121,7 +121,6 @@ This file is in BETA. Please test and contribute to the discussion:
           <h2>Recent Items</h2>
           <xsl:for-each select="/rss/channel/item">
             <div class="pb-5">
-            <img><xsl:attribute name="src"><xsl:value-of select="media" /></xsl:attribute><xsl:attribute name="width">200</xsl:attribute><xsl:attribute name="height">100</xsl:attribute></img>
               <h3 class="mb-0">
                 <a target="_blank">
                   <xsl:attribute name="href">

@@ -13,9 +13,7 @@ export async function GET(context: { site: string }) {
     }
   })
   return rss({
-    xmlns: {
-      media: 'http://search.yahoo.com/mrss/',
-    },
+    stylesheet: '/rss/styles.xsl',
     title: 'Albe Torres',
     description:
       'A passionate freelance fullstack software engineer based in Miami. With over three years of experience.',
@@ -27,13 +25,6 @@ export async function GET(context: { site: string }) {
 
       description: post.data.description,
       link: `/posts/${slugify(post.data.title)}/`,
-      customData: `<media:content
-      type="image/${post.data.image.src.format == 'jpg' ? 'jpeg' : 'png'}"
-      width="${200}"
-      height="${100}"
-      medium="image"
-      url="${context.site + post.data.image.src.src}" />
-  `,
     })),
     customData: `<language>en-us</language>`,
   })
