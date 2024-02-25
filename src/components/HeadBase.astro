@@ -36,4 +36,4 @@ const img = image ? image : '/albe-dev.webp'
 <meta property='twitter:url' content={Astro.url} />
 <meta property='twitter:title' content={title} />
 <meta property='twitter:description' content={description} />
-{image && <meta property='twitter:image' content={new URL(img, Astro.url)} />}
+<meta property='twitter:image' content={new URL(img, Astro.url)} />
