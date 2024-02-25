@@ -26,7 +26,11 @@ const filtredPosts = await getCollection('posts', p => {
 const relatedPosts = filtredPosts.slice(0, 4)
 ---
 
-<Layout title={frontmatter.title} description={frontmatter.description}>
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image.src.src}
+>
   <header class='mb-5'>
     <div class='flex flex-col gap-y-4 mb-5'>
       <div class='space-y-2 gap-y-2'>
